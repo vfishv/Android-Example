@@ -6,19 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.materialchipsandroid.databinding.FragmentChoiceChipBinding
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_choice_chip.*
 
 class ChoiceChipFragment : Fragment() {
 
+    private lateinit var binding: FragmentChoiceChipBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_choice_chip, container,false)
+        binding = FragmentChoiceChipBinding.inflate(inflater, container,false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        chip_group_choice.setOnCheckedChangeListener { group, checkedId ->
+        binding.chipGroupChoice.setOnCheckedChangeListener { group, checkedId ->
 
             val chip: Chip? = group.findViewById(checkedId)
 

@@ -6,31 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.layout_action_chip.*
+import com.example.materialchipsandroid.databinding.LayoutActionChipBinding
 
 class ActionChipFragment : Fragment() {
 
+    private lateinit var binding:LayoutActionChipBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.layout_action_chip, container, false)
+        binding = LayoutActionChipBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        chip_alarm.setOnClickListener {
+        binding.chipAlarm.setOnClickListener {
             Toast.makeText(context, "Alarm", Toast.LENGTH_SHORT).show()
         }
 
-        chip_music.setOnClickListener {
+        binding.chipMusic.setOnClickListener {
             Toast.makeText(context, "Music", Toast.LENGTH_SHORT).show()
         }
 
-        chip_call.setOnClickListener {
+        binding.chipCall.setOnClickListener {
             Toast.makeText(context, "Call", Toast.LENGTH_SHORT).show()
         }
 
-        chip_message.setOnClickListener {
+        binding.chipMessage.setOnClickListener {
             Toast.makeText(context, "Message", Toast.LENGTH_SHORT).show()
         }
     }

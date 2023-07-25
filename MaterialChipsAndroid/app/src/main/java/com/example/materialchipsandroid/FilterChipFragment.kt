@@ -6,23 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.materialchipsandroid.databinding.FragmentFilterChipBinding
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_filter_chip.*
 
 class FilterChipFragment : Fragment() {
+
+    private lateinit var binding: FragmentFilterChipBinding
 
     var adapter: FilterChipListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_filter_chip, container, false)
+        binding = FragmentFilterChipBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        chip_group_filter.setOnCheckedChangeListener { group, checkedId ->
+        binding.chipGroupFilter.setOnCheckedChangeListener { group, checkedId ->
 
             val chip: Chip? = group.findViewById(checkedId)
 
@@ -38,8 +39,8 @@ class FilterChipFragment : Fragment() {
         }
 
         adapter = FilterChipListAdapter()
-        recyclerview_filter.layoutManager = LinearLayoutManager(context)
-        recyclerview_filter.adapter = adapter
+        binding.recyclerviewFilter.layoutManager = LinearLayoutManager(context)
+        binding.recyclerviewFilter.adapter = adapter
         adapter?.setData(prepareData())
 
     }

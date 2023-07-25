@@ -9,28 +9,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.materialchipsandroid.databinding.FragmentChoiceChipBinding
+import com.example.materialchipsandroid.databinding.FragmentEntryChipBinding
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_entry_chip.*
 
 class EntryChipsFragment : Fragment() {
 
+    private lateinit var binding: FragmentEntryChipBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val mView = LayoutInflater.from(context).inflate(R.layout.fragment_entry_chip, container, false)
-        return mView
+        binding = FragmentEntryChipBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        ed_to.addTextChangedListener( object : TextWatcher {
+        binding.edTo.addTextChangedListener( object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
                 if(!s.toString().isEmpty()){
                     if(s.toString().length == 1 && s.toString().last().toString() == ","){
-                        ed_to.setText("")
+                        binding.edTo.setText("")
                     }
                     else if(s.toString().length > 1 && s.toString().last().toString() == ","){
-                        ed_to.setText("")
+                        binding.edTo.setText("")
                     }
                 }
 
@@ -61,8 +64,8 @@ class EntryChipsFragment : Fragment() {
         // necessary to get single selection working
         chip.isClickable = true
         chip.isCheckable = false
-        chip_group.addView(chip as View)
-        chip.setOnCloseIconClickListener { chip_group.removeView(chip as View) }
+        binding.chipGroup.addView(chip as View)
+        chip.setOnCloseIconClickListener { binding.chipGroup.removeView(chip as View) }
     }
 
 

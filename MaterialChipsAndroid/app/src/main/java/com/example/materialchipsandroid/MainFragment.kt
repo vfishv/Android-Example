@@ -5,29 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.example.materialchipsandroid.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
+    private lateinit var binding: FragmentMainBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        btn_entry_chip.setOnClickListener {
+        binding.btnEntryChip.setOnClickListener {
             replaceFragment(EntryChipsFragment.newInstance())
         }
 
-        btn_filter_chip.setOnClickListener {
+        binding.btnFilterChip.setOnClickListener {
             replaceFragment(FilterChipFragment())
         }
 
-        btn_choice_chip.setOnClickListener {
+        binding.btnChoiceChip.setOnClickListener {
             replaceFragment(ChoiceChipFragment())
         }
 
-        btn_action_chip.setOnClickListener {
+        binding.btnActionChip.setOnClickListener {
             replaceFragment(ActionChipFragment())
         }
     }

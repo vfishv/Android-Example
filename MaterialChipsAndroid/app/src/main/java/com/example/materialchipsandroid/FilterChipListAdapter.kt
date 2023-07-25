@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_filter_chip_adapter.view.*
+import com.example.materialchipsandroid.databinding.LayoutFilterChipAdapterBinding
 
 class FilterChipListAdapter : RecyclerView.Adapter<FilterViewHolder>() {
 
@@ -17,8 +17,9 @@ class FilterChipListAdapter : RecyclerView.Adapter<FilterViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.layout_filter_chip_adapter,parent, false)
-        return FilterViewHolder(view)
+        val binding = LayoutFilterChipAdapterBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        //val view  = LayoutInflater.from(parent.context).inflate(R.layout.layout_filter_chip_adapter,parent, false)
+        return FilterViewHolder(binding)
     }
 
     override fun getItemCount() = items.size
@@ -31,9 +32,9 @@ class FilterChipListAdapter : RecyclerView.Adapter<FilterViewHolder>() {
     }
 }
 
-class FilterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class FilterViewHolder(binding: LayoutFilterChipAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    val textTitle = view.text_title
-    val textCategory = view.text_category
+    val textTitle = binding.textTitle
+    val textCategory = binding.textCategory
 
 }
